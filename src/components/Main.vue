@@ -90,17 +90,24 @@ export default {
     selectMore() {
       this.isListOpen = true;
     },
+    shouldRemove(group) {
+      for (let id in group) {
+        if (id in this.selectedGroupsPaths) return true;
+      }
+      return false;
+    },
     groupSelected(group) {
+      const callback = this.shouldRemove(group) ? this.remove : this.add;
       Object.keys(group).forEach((id) => {
-        if (id in this.selectedGroupsPaths) {
-          this.remove(id);
-        } else {
-          this.$set(this.selectedGroupsPaths, id, group[id]);
-        }
+        callback(id, group[id]);
       });
     },
     remove(id) {
-      this.$delete(this.selectedGroupsPaths, id);
+      if (id in this.selectedGroupsPaths)
+        this.$delete(this.selectedGroupsPaths, id);
+    },
+    add(id, element) {
+      this.$set(this.selectedGroupsPaths, id, element);
     },
     changeState() {
       this.isListOpen = !this.isListOpen;
