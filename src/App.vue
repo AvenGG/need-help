@@ -29,6 +29,14 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
 ul {
   list-style: none;
 }
@@ -37,7 +45,10 @@ ul {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  font-family: "Futura PT";
+  font-style: normal;
+  font-weight: 400;
+  color: #302f2d;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

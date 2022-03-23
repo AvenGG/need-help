@@ -1,34 +1,43 @@
 <template>
-  <div>
-    <ul class="list">
-      <li v-if="!isMainRoot" class="list__item" title="Назад" @click="back">
-        Назад
-      </li>
-      <li
-        v-if="currentRootElement.id"
-        title="Все дети"
-        class="list__item"
-        @click="selectAllChildren"
-      >
-        Все дети
-      </li>
-      <li
-        v-for="child of currentRootElement[childrenName]"
-        :title="child.name"
-        class="list__item"
-        @click="selectChild(child)"
-      >
-        <span class="list__item-text">{{ child.name }}</span>
-        <img
-          v-if="child[childrenName].length"
-          src="@/assets/arrowRight.svg"
-          class="list__item-arrow"
-          alt="Дочерние группы"
-        />
-      </li>
-    </ul>
-    <slot :changeState="changeState" />
-  </div>
+  <ul class="list">
+    <li
+      v-if="!isMainRoot"
+      class="list__item list__item_back"
+      title="Назад"
+      @click.stop="back"
+    >
+      <img
+        src="@/assets/arrowRight.svg"
+        class="list__item-arrow list__item-arrow_reverse"
+        alt="Назад"
+      />
+      <span class="list__item-text">{{ currentRootElement.name }}</span>
+    </li>
+    <li
+      v-if="currentRootElement.id"
+      title="Все дети"
+      class="list__item"
+      @click.stop="selectAllChildren"
+    >
+      <span class="list__item-text">{{
+        `Все ${currentRootElement.name}`
+      }}</span>
+    </li>
+    <li
+      v-for="child of currentRootElement[childrenName]"
+      :title="child.name"
+      class="list__item"
+      @click.stop="selectChild(child)"
+    >
+      <span class="list__item-text">{{ child.name }}</span>
+      <img
+        v-if="child[childrenName].length"
+        src="@/assets/arrowRight.svg"
+        class="list__item-arrow"
+        alt="Дочерние группы"
+      />
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -55,9 +64,6 @@ export default {
     this.build(this.currentRootElement);
   },
   methods: {
-    changeState() {
-      this.isOpen = !this.isOpen;
-    },
     build(root) {
       root[this.childrenName].forEach((child) => {
         child.parentElement = root;
@@ -71,7 +77,7 @@ export default {
     },
     selectChild(child) {
       if (child[this.childrenName].length === 0) {
-        this.$emit("select", {[child.id]: this.pathToRoot(child)});
+        this.$emit("select", { [child.id]: this.pathToRoot(child) });
         return;
       }
       this.currentRootElement = child;
@@ -87,10 +93,7 @@ export default {
       return paths;
     },
     selectAllChildren() {
-      this.$emit(
-        "select",
-        this.pathToAllChildren(this.currentRootElement)
-      );
+      this.$emit("select", this.pathToAllChildren(this.currentRootElement));
     },
     back() {
       if (!this.isMainRoot) {
@@ -110,6 +113,7 @@ export default {
 .list {
   width: 280px;
   max-height: 300px;
+  background-color: #fff;
   border: 1px solid #e6e6e6;
   border-radius: 5px;
   overflow-y: scroll;
@@ -121,15 +125,26 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+.list__item:hover {
+  background-color: #f3f3f3;
+}
 .list__item-text {
+  white-space: nowrap;
   font-family: "Futura";
   font-style: normal;
   font-weight: 500;
   font-size: 17px;
   line-height: 20px;
-
-  color: #302f2d;
 }
 .list__item-arrow {
+}
+
+.list__item-arrow_reverse {
+  transform: rotateY(180deg);
+}
+
+.list__item_back {
+  justify-content: flex-start;
+  color: #999999;
 }
 </style>
