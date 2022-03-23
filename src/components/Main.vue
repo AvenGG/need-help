@@ -218,6 +218,7 @@ export default {
   height: 20px;
 }
 .fundraising__select-label {
+  cursor: pointer;
   font-size: 20px;
   line-height: 25px;
 }
@@ -234,6 +235,7 @@ export default {
   margin-top: 48px;
 }
 .fundraising__save {
+  cursor: pointer;
   width: 320px;
   height: 60px;
   margin-top: 60px;
