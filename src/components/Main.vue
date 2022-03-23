@@ -119,7 +119,11 @@ export default {
       selectedIds.forEach((id) => {
         pathIds.push(...this.selectedGroupsPaths[id].map((g) => g.id));
       });
+
+      console.log("_______________________________________");
       console.log("groups: ", pathIds);
+      console.log("_______________________________________");
+
       console.log(
         "Не совсем понял, почему нужно выводить в таком формате, сделал ещё в других:"
       );
@@ -127,6 +131,8 @@ export default {
         "Уникальные затронутые группы: ",
         Array.from(new Set(pathIds))
       );
+      this.fundraisingName &&
+        console.log("Название сбора: ", this.fundraisingName);
       console.log("Выбранные группы без дочерних эллементов: ", selectedIds);
     },
   },
@@ -184,7 +190,9 @@ export default {
   width: 960px;
   height: 50px;
   margin-top: 24px;
-
+  padding-left: 20px;
+  font-size: 20px;
+  line-height: 25px;
   background: #fafafa;
   border: 1px solid #e6e6e6;
 }
@@ -216,7 +224,7 @@ export default {
 .fundrising__list {
   position: absolute;
   bottom: 50px;
-  left: 0;
+  left: -1px;
   margin-top: 100px;
 }
 .divider {

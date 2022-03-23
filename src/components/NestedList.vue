@@ -111,7 +111,7 @@ export default {
 
 <style scoped>
 .list {
-  width: 280px;
+  min-width: 280px;
   max-height: 300px;
   background-color: #fff;
   border: 1px solid #e6e6e6;
