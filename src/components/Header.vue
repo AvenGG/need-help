@@ -24,7 +24,7 @@ export default {
   justify-content: space-between;
   height: 120px;
   background-color: #fafafa;
-  border-bottom: 1px solid #E6E6E6;
+  border-bottom: 1px solid #e6e6e6;
 }
 .header__logo {
   margin: 0 0 0 50px;

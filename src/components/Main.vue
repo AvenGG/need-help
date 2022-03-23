@@ -1,8 +1,10 @@
 <template>
   <main class="main">
-    <h1 class="main__header">Создание сбора</h1>
+    <h1 class="main__header" title="Создание сбора">Создание сбора</h1>
     <section class="fundraising">
-      <h3 class="fundraising__info">Информация о сборе</h3>
+      <h3 class="fundraising__info" title="Информация о сборе">
+        Информация о сборе
+      </h3>
       <label
         for="fundraising-input"
         class="fundraising__label"
@@ -112,9 +114,12 @@ export default {
       });
       console.log("groups: ", pathIds);
       console.log(
-        "Не совсем понял почему нужно выводить в таком формате сделал ещё в других:"
+        "Не совсем понял, почему нужно выводить в таком формате, сделал ещё в других:"
       );
-      console.log("Уникальные затронутые группы: ", Array.from(new Set(pathIds)));
+      console.log(
+        "Уникальные затронутые группы: ",
+        Array.from(new Set(pathIds))
+      );
       console.log("Выбранные группы без дочерних эллементов: ", selectedIds);
     },
   },
@@ -125,6 +130,9 @@ export default {
 .main {
   padding: 50px 60px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .main__header {
   font-family: "Futura PT";
@@ -133,6 +141,7 @@ export default {
   font-size: 50px;
   line-height: 50px;
   color: #302f2d;
+  margin-bottom: 37px;
 }
 .fundraising {
   border: 1px solid #e6e6e6;

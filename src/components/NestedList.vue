@@ -125,6 +125,13 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+.list__item-text {
+  font-family: "Futura";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 20px;
+}
 .list__item:hover {
   background-color: #f3f3f3;
 }
