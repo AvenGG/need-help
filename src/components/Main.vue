@@ -78,7 +78,7 @@ export default {
       isListOpen: false,
     };
   },
-  mounted() {
+  created() {
     this.getGroups();
   },
   methods: {
